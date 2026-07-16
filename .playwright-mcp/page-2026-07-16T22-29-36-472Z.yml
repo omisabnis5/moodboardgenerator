@@ -1,0 +1,117 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - heading "Mood Board Generator" [level=1] [ref=f1e5]
+    - paragraph [ref=f1e6]: Pick a room, a style, and a color palette — then generate four mood boards.
+  - main [ref=f1e7]:
+    - generic [ref=f1e8]:
+      - group [ref=f1e9]:
+        - radiogroup "Room Type" [ref=f1e11]:
+          - radio "Living Room Main gathering space for relaxation and entertainment" [ref=f1e12] [cursor=pointer]:
+            - generic [ref=f1e14]:
+              - generic [ref=f1e15]: Living Room
+              - generic [ref=f1e16]: Main gathering space for relaxation and entertainment
+          - radio "Dining Room Formal or casual dining and meal spaces" [ref=f1e17] [cursor=pointer]:
+            - generic [ref=f1e19]:
+              - generic [ref=f1e20]: Dining Room
+              - generic [ref=f1e21]: Formal or casual dining and meal spaces
+          - radio "Bedroom Primary sleeping and personal retreat spaces" [ref=f1e22] [cursor=pointer]:
+            - generic [ref=f1e24]:
+              - generic [ref=f1e25]: Bedroom
+              - generic [ref=f1e26]: Primary sleeping and personal retreat spaces
+          - radio "Children's Room Playful and functional spaces for kids" [ref=f1e27] [cursor=pointer]:
+            - generic [ref=f1e29]:
+              - generic [ref=f1e30]: Children's Room
+              - generic [ref=f1e31]: Playful and functional spaces for kids
+          - radio "Kitchen Cooking and food preparation areas" [checked] [ref=f1e32] [cursor=pointer]:
+            - generic [ref=f1e33]: ✓
+            - generic [ref=f1e34]:
+              - generic [ref=f1e35]: Kitchen
+              - generic [ref=f1e36]: Cooking and food preparation areas
+          - radio "Bathroom Personal care and bathing spaces" [ref=f1e37] [cursor=pointer]:
+            - generic [ref=f1e39]:
+              - generic [ref=f1e40]: Bathroom
+              - generic [ref=f1e41]: Personal care and bathing spaces
+          - radio "Home Office Productive work and study environments" [ref=f1e42] [cursor=pointer]:
+            - generic [ref=f1e44]:
+              - generic [ref=f1e45]: Home Office
+              - generic [ref=f1e46]: Productive work and study environments
+          - radio "Entryway Welcome spaces and first impressions" [ref=f1e47] [cursor=pointer]:
+            - generic [ref=f1e49]:
+              - generic [ref=f1e50]: Entryway
+              - generic [ref=f1e51]: Welcome spaces and first impressions
+      - group [ref=f1e52]:
+        - radiogroup "Style" [ref=f1e54]:
+          - radio "Bohemian Free-spirited with rich textures and global influences" [ref=f1e55] [cursor=pointer]:
+            - generic [ref=f1e57]:
+              - generic [ref=f1e58]: Bohemian
+              - generic [ref=f1e59]: Free-spirited with rich textures and global influences
+          - radio "Modern Clean lines with minimalist and contemporary elements" [ref=f1e60] [cursor=pointer]:
+            - generic [ref=f1e62]:
+              - generic [ref=f1e63]: Modern
+              - generic [ref=f1e64]: Clean lines with minimalist and contemporary elements
+          - radio "Traditional Classic elegance with timeless furniture and patterns" [checked] [ref=f1e65] [cursor=pointer]:
+            - generic [ref=f1e66]: ✓
+            - generic [ref=f1e67]:
+              - generic [ref=f1e68]: Traditional
+              - generic [ref=f1e69]: Classic elegance with timeless furniture and patterns
+          - radio "Contemporary Current trends with sleek and sophisticated touches" [ref=f1e70] [cursor=pointer]:
+            - generic [ref=f1e72]:
+              - generic [ref=f1e73]: Contemporary
+              - generic [ref=f1e74]: Current trends with sleek and sophisticated touches
+          - radio "Industrial Raw materials with urban and warehouse-inspired elements" [ref=f1e75] [cursor=pointer]:
+            - generic [ref=f1e77]:
+              - generic [ref=f1e78]: Industrial
+              - generic [ref=f1e79]: Raw materials with urban and warehouse-inspired elements
+          - radio "Scandinavian Light woods with cozy and functional Nordic design" [ref=f1e80] [cursor=pointer]:
+            - generic [ref=f1e82]:
+              - generic [ref=f1e83]: Scandinavian
+              - generic [ref=f1e84]: Light woods with cozy and functional Nordic design
+          - radio "Mid-Century Modern Retro charm with 1950s-60s inspired furniture" [ref=f1e85] [cursor=pointer]:
+            - generic [ref=f1e87]:
+              - generic [ref=f1e88]: Mid-Century Modern
+              - generic [ref=f1e89]: Retro charm with 1950s-60s inspired furniture
+          - radio "Farmhouse Rustic comfort with country-inspired and vintage elements" [ref=f1e90] [cursor=pointer]:
+            - generic [ref=f1e92]:
+              - generic [ref=f1e93]: Farmhouse
+              - generic [ref=f1e94]: Rustic comfort with country-inspired and vintage elements
+      - group [ref=f1e95]:
+        - radiogroup "Color Palette" [ref=f1e97]:
+          - radio "Neutral Warm Cozy beiges, creams, and soft browns" [ref=f1e98] [cursor=pointer]:
+            - generic [ref=f1e100]:
+              - generic [ref=f1e101]: Neutral Warm
+              - generic [ref=f1e102]: Cozy beiges, creams, and soft browns
+          - radio "Cool Blues Calming blues, teals, and aqua tones" [ref=f1e109] [cursor=pointer]:
+            - generic [ref=f1e111]:
+              - generic [ref=f1e112]: Cool Blues
+              - generic [ref=f1e113]: Calming blues, teals, and aqua tones
+          - radio "Earth Tones Natural greens, terracotta, and warm browns" [ref=f1e120] [cursor=pointer]:
+            - generic [ref=f1e122]:
+              - generic [ref=f1e123]: Earth Tones
+              - generic [ref=f1e124]: Natural greens, terracotta, and warm browns
+          - radio "Monochrome Sophisticated blacks, whites, and grays" [ref=f1e131] [cursor=pointer]:
+            - generic [ref=f1e133]:
+              - generic [ref=f1e134]: Monochrome
+              - generic [ref=f1e135]: Sophisticated blacks, whites, and grays
+          - radio "Jewel Tones Rich emeralds, sapphires, and deep purples" [ref=f1e142] [cursor=pointer]:
+            - generic [ref=f1e144]:
+              - generic [ref=f1e145]: Jewel Tones
+              - generic [ref=f1e146]: Rich emeralds, sapphires, and deep purples
+          - radio "Pastels Soft pinks, lavenders, and gentle mint greens" [checked] [active] [ref=f1e153] [cursor=pointer]:
+            - generic [ref=f1e154]: ✓
+            - generic [ref=f1e155]:
+              - generic [ref=f1e156]: Pastels
+              - generic [ref=f1e157]: Soft pinks, lavenders, and gentle mint greens
+    - generic [ref=f1e164]:
+      - generic "Current selection" [ref=f1e165]:
+        - generic [ref=f1e166]:
+          - generic [ref=f1e167]: Room
+          - generic [ref=f1e168]: Kitchen
+        - generic [ref=f1e169]:
+          - generic [ref=f1e170]: Style
+          - generic [ref=f1e171]: Traditional
+        - generic [ref=f1e172]:
+          - generic [ref=f1e173]: Palette
+          - generic [ref=f1e174]: Pastels
+      - generic [ref=f1e175]:
+        - button "Generate mood boards" [ref=f1e176] [cursor=pointer]
+        - paragraph [ref=f1e177]: Ready to generate 4 mood boards.
