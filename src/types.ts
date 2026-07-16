@@ -67,4 +67,8 @@ export interface BoardResult {
   /** Alt text for the rendered image. */
   alt: string;
   status: BoardStatus;
+  /** Whether this board's image request has been started (queue gate). */
+  started: boolean;
+  /** How many times this board has auto-retried after a failure. */
+  retries: number;
 }

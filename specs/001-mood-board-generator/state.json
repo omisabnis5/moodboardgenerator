@@ -4,7 +4,7 @@
   "prs": [
     { "id": "PR-1", "branch": "feat/001-01-scaffold", "dependsOn": [], "status": "merged" },
     { "id": "PR-2", "branch": "feat/001-02-core", "dependsOn": ["PR-1"], "status": "merged" },
-    { "id": "PR-3", "branch": "feat/001-03-selection-ui", "dependsOn": ["PR-2"], "status": "pending" },
+    { "id": "PR-3", "branch": "feat/001-03-selection-ui", "dependsOn": ["PR-2"], "status": "merged" },
     { "id": "PR-4", "branch": "feat/001-04-generation-ui", "dependsOn": ["PR-2", "PR-3"], "status": "pending" },
     { "id": "PR-5", "branch": "feat/001-05-e2e-polish", "dependsOn": ["PR-3", "PR-4"], "status": "pending" }
   ]

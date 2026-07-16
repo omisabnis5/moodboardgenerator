@@ -12,6 +12,7 @@ test-results
 .playwright
 .playwright-mcp
 pr*-*.png
+pr*-*.jpeg
 
 # logs
 *.log

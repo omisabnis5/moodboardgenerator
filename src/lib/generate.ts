@@ -58,6 +58,8 @@ export function generateBoards(
       label,
       alt: `${label} mood board ${index + 1}`,
       status: 'loading' as const,
+      started: false,
+      retries: 0,
     };
   });
 }

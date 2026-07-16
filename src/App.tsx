@@ -1,24 +1,45 @@
 import { useState } from 'react';
 import { SelectionPanel } from './components/SelectionPanel';
 import { GenerateBar } from './components/GenerateBar';
+import { BoardGrid } from './components/BoardGrid';
 import {
   colorPaletteLabel,
   roomTypeLabel,
   styleLabelOf,
 } from './data/options';
+import { downloadBoard } from './lib/download';
 import {
   EMPTY_SELECTION,
   isComplete,
   missingGroups,
+  toSelection,
   type PartialSelection,
 } from './lib/selection';
+import { useMoodboards } from './hooks/useMoodboards';
 import './App.css';
 
 export default function App() {
   const [selection, setSelection] = useState<PartialSelection>(EMPTY_SELECTION);
+  const moodboards = useMoodboards();
 
   const canGenerate = isComplete(selection);
   const missing = missingGroups(selection);
+
+  // Any change after results exist marks them stale until re-generated.
+  function updateSelection(patch: Partial<PartialSelection>) {
+    setSelection((prev) => ({ ...prev, ...patch }));
+    if (moodboards.hasResults) {
+      moodboards.markStale();
+    }
+  }
+
+  function handleGenerate() {
+    const complete = toSelection(selection);
+    if (complete) {
+      console.info('[moodboards] generate', complete);
+      moodboards.generate(complete);
+    }
+  }
 
   const summary = [
     { label: 'Room', value: selection.roomType && roomTypeLabel(selection.roomType) },
@@ -28,10 +49,6 @@ export default function App() {
       value: selection.colorPalette && colorPaletteLabel(selection.colorPalette),
     },
   ];
-
-  function handleGenerate() {
-    // Wired to the generation flow in PR-4.
-  }
 
   return (
     <div className="app-shell">
@@ -47,19 +64,27 @@ export default function App() {
           roomType={selection.roomType}
           style={selection.style}
           colorPalette={selection.colorPalette}
-          onRoomTypeChange={(roomType) => setSelection((s) => ({ ...s, roomType }))}
-          onStyleChange={(style) => setSelection((s) => ({ ...s, style }))}
-          onColorPaletteChange={(colorPalette) =>
-            setSelection((s) => ({ ...s, colorPalette }))
-          }
+          onRoomTypeChange={(roomType) => updateSelection({ roomType })}
+          onStyleChange={(style) => updateSelection({ style })}
+          onColorPaletteChange={(colorPalette) => updateSelection({ colorPalette })}
         />
 
         <GenerateBar
           summary={summary}
           canGenerate={canGenerate}
           missing={missing}
-          isGenerating={false}
+          isGenerating={moodboards.isGenerating}
           onGenerate={handleGenerate}
+        />
+
+        <BoardGrid
+          boards={moodboards.boards}
+          isGenerating={moodboards.isGenerating}
+          stale={moodboards.stale}
+          onBoardLoaded={moodboards.onBoardLoaded}
+          onBoardError={moodboards.onBoardError}
+          onRetryBoard={moodboards.retryBoard}
+          onDownload={downloadBoard}
         />
       </main>
     </div>
