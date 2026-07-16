@@ -10,6 +10,8 @@ coverage
 playwright-report
 test-results
 .playwright
+.playwright-mcp
+pr*-*.png
 
 # logs
 *.log
