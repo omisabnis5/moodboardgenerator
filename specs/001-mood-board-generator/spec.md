@@ -1,7 +1,7 @@
 # Spec: Mood Board Generator
 
 - **Spec ID:** 001-mood-board-generator
-- **Status:** ready
+- **Status:** done
 - **Created:** 2026-07-16
 - **Mode:** new-project
 - **Inputs:** User prompt (feature description + `ROOM_TYPE_OPTIONS`, `STYLE_OPTIONS`, `COLOR_PALETTE_OPTIONS` TypeScript option lists). No mockups attached. No constitution present (`.specify/memory/constitution.md` missing — recommend running `/specs:constitution`; NFRs below use sensible defaults).
