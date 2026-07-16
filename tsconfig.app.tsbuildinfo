@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/test/setup.ts"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/types.ts","./src/data/options.ts","./src/lib/generate.ts","./src/lib/imageprovider.ts","./src/lib/prompt.ts","./src/test/generate.test.ts","./src/test/options.test.ts","./src/test/prompt.test.ts","./src/test/setup.ts"],"version":"5.9.3"}
