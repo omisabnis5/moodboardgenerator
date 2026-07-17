@@ -23,11 +23,17 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
+      # npm install (not ci): tolerant of lockfile interpretation differences
+      # between local npm and the runner's npm.
+      - run: npm install --no-audit --no-fund
       - run: npm run lint
       - run: npm run test:unit
       # Project site is served from /moodboardgenerator/, so set the base path.
       - run: npm run build -- --base=/moodboardgenerator/
+      # Auto-enables GitHub Pages for the repo on first run.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
