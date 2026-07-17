@@ -93,6 +93,16 @@ test.describe('Mood Board Generator', () => {
     expect(r2.y).toBeGreaterThan(c2.y + c2.height / 2);
   });
 
+  test('Generate action bar stays visible while scrolling (AC-2 regression)', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 680 });
+    await page.goto('/');
+    const button = generateButton(page);
+    await expect(button).toBeInViewport();
+    // Scroll the long controls column; the sticky action bar must remain visible.
+    await page.mouse.wheel(0, 2500);
+    await expect(button).toBeInViewport();
+  });
+
   test('generates exactly 4 distinct boards, all ready (AC-4, AC-5, AC-13, AC-15)', async ({ page }) => {
     const seeds = new Set<string>();
     await page.route(IMAGE_GLOB, (route) => {

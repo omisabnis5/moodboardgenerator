@@ -41,10 +41,6 @@
     position: sticky;
     top: 1.5rem;
   }
-  /* In two panes the bar sits at the end of the controls column, not floating. */
-  .generate-bar {
-    position: static;
-  }
 }
 
 /* ---------- Selection groups ---------- */
@@ -145,6 +141,7 @@
 .generate-bar {
   position: sticky;
   bottom: 0;
+  z-index: 10;
   margin-top: 1.75rem;
   padding: 1rem 1.1rem;
   background: var(--surface);

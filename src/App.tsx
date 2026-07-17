@@ -69,14 +69,6 @@ export default function App() {
             onStyleChange={(style) => updateSelection({ style })}
             onColorPaletteChange={(colorPalette) => updateSelection({ colorPalette })}
           />
-
-          <GenerateBar
-            summary={summary}
-            canGenerate={canGenerate}
-            missing={missing}
-            isGenerating={moodboards.isGenerating}
-            onGenerate={handleGenerate}
-          />
         </div>
 
         <div className="app-layout__results">
@@ -92,6 +84,15 @@ export default function App() {
           />
         </div>
       </main>
+
+      {/* Persistent, full-width action bar — always visible across both panes. */}
+      <GenerateBar
+        summary={summary}
+        canGenerate={canGenerate}
+        missing={missing}
+        isGenerating={moodboards.isGenerating}
+        onGenerate={handleGenerate}
+      />
     </div>
   );
 }
