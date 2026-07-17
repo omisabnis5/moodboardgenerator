@@ -172,6 +172,26 @@ test.describe('Mood Board Generator', () => {
     await expect(page.getByTestId('board-card')).toHaveCount(4);
   });
 
+  test('sticky action bar does not clip the last board row (AC-12 regression)', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await stubImages(page);
+    await page.goto('/');
+    await selectKitchenTraditionalPastels(page);
+    await generateButton(page).click();
+    await expect(page.getByTestId('results-status')).toContainText('ready', { timeout: 20_000 });
+
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    const clipped = await page.evaluate(() => {
+      const cards = [...document.querySelectorAll('[data-testid="board-card"]')];
+      const bar = document.querySelector('.generate-bar') as HTMLElement;
+      const barTop = bar.getBoundingClientRect().top;
+      const lastCaption = cards[cards.length - 1].querySelector('.board-card__caption') as HTMLElement;
+      // The last caption's bottom must sit above the sticky bar's top edge.
+      return lastCaption.getBoundingClientRect().bottom > barTop + 1;
+    });
+    expect(clipped).toBe(false);
+  });
+
   test('a board can be downloaded (AC-9)', async ({ page }) => {
     await stubImages(page);
     await page.goto('/');

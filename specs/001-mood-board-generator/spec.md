@@ -12,7 +12,12 @@ User feedback after the first delivery. Adds/refines requirements; delivered as 
 - **CR-1 — Full-width layout.** The app currently caps at a centered ~1080px column, leaving large empty side margins on desktop and feeling cramped. WHEN viewed on a wide screen, the app SHALL make effective use of the full width — a two-pane layout (selection controls beside the results) on large viewports, stacking to one column on narrow ones. → new **FR-15**, revises §6.
 - **CR-2 — Reliability: no partial failures.** Users still saw 2 of 4 boards error out. The generation SHALL be hardened so that, under normal provider conditions, all four boards succeed — via bounded concurrency (a request queue) plus staggered starts and exponential-backoff retries. → revises **FR-9**, **NFR-Reliability**.
 - **CR-3 — Stronger per-board variation.** The four boards SHALL be visibly, meaningfully different directions (distinct camera angle, lighting/time-of-day, and styling emphasis), not near-duplicates, so the user gets genuinely varied options. → revises **FR-8**.
-- **CR-4 — Decorative artifacts in the rooms.** Generated rooms SHALL appear richly styled with decorative artifacts (framed art, ceramics/vases, plants, books, textiles/rugs, ornaments) so boards read as finished, styled spaces. → new **FR-16**, revises prompt in §8.
+- **CR-4 — Decorative artifacts in the rooms.** Generated rooms SHALL include decorative artifacts (framed art, vase, plant, books, rug) as a **restrained ~20–25% accent** — the room's furniture and architecture stay the clear subject, not crowded out. → new **FR-16**, revises prompt in §8.
+
+### Change request v2.1 refinements (2026-07-17, same PR-6)
+- **Full-bleed width:** removed the container `max-width` cap (was 1440px); the app now fills the viewport with scaling side padding (`clamp(1.25rem, 4vw, 4rem)`) — verified on a 1920px screen.
+- **Action-bar clipping:** the full-width sticky Generate bar was covering the last board row; added `padding-bottom` to the layout so every board scrolls clear of the bar — locked by an E2E assertion (last caption sits above the bar).
+- **Artifact density:** prompt reworded from "richly decorated with artifacts — [long list]" to furniture-as-focus + "a few decorative artifacts … occupying only about 20–25% of the scene, uncluttered".
 
 ### Revised / new requirements
 - **FR-8 (revised):** The 4 boards SHALL be four **independent directions** that differ visibly in composition, lighting, and styling emphasis (driven by 4 distinct seeds **and** 4 distinct prompt-variation phrases), not four near-identical images.

@@ -31,6 +31,8 @@
   display: grid;
   gap: 1.75rem;
   align-items: start;
+  /* Room for the sticky action bar so it never clips the last board row. */
+  padding-bottom: 7rem;
 }
 @media (min-width: 1024px) {
   .app-layout {

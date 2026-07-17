@@ -36,11 +36,15 @@ describe('buildPrompt (AC-6, security)', () => {
     expect(prompt).toContain('interior');
   });
 
-  it('requests decorative artifacts in the room (AC-14)', () => {
+  it('requests restrained decorative artifacts with the room as the focus (AC-14)', () => {
     const prompt = buildPrompt(base).toLowerCase();
     expect(prompt).toContain('artifacts');
+    expect(prompt).toContain('focal point');
+    // Keeps artifacts a minor accent, not the subject.
+    expect(prompt).toContain('20-25%');
+    expect(prompt).toContain('uncluttered');
     // A few representative artifact cues.
-    for (const cue of ['art', 'vases', 'plants', 'textiles', 'ornaments']) {
+    for (const cue of ['artwork', 'plant', 'vase', 'rug']) {
       expect(prompt).toContain(cue);
     }
   });

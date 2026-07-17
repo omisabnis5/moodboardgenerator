@@ -20,10 +20,10 @@ export function buildPrompt(request: GenerateRequest): string {
 
   const parts = [
     `a ${style} ${room} interior`,
-    'fully furnished and beautifully styled',
+    // Room + furniture is the subject; artifacts are a restrained accent (FR-16).
+    "well furnished, with the room's core furniture and architecture as the clear focal point",
     `${palette} color palette (${hexes} tones)`,
-    // Decorative artifacts so boards read as finished, styled spaces (FR-16).
-    'richly decorated with artifacts — framed wall art, ceramic vases, potted plants and greenery, stacked books, woven textiles and patterned rugs, sculptural ornaments and curated accessories',
+    'tastefully accented with a few decorative artifacts (a framed artwork, a potted plant, a vase, books, a patterned rug) occupying only about 20-25% of the scene — uncluttered, balanced and realistic, not crowded',
     'professional interior design photograph, wide angle, natural light, high detail, photorealistic, 8k',
   ];
 
