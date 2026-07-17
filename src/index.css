@@ -23,5 +23,6 @@ body {
 .app-shell {
   max-width: none;
   margin: 0 auto;
-  padding: 2rem clamp(1.25rem, 4vw, 4rem);
+  /* extra bottom padding reserves room for the fixed action bar */
+  padding: 2rem clamp(1.25rem, 4vw, 4rem) 7rem;
 }

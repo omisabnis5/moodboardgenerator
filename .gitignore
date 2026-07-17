@@ -12,8 +12,9 @@ playwright-report
 test-results
 .playwright
 .playwright-mcp
-pr*-*.png
-pr*-*.jpeg
+# scratch screenshots at repo root (keep docs/ tracked)
+/*.png
+/*.jpeg
 
 # logs
 *.log
