@@ -59,33 +59,38 @@ export default function App() {
         </p>
       </header>
 
-      <main>
-        <SelectionPanel
-          roomType={selection.roomType}
-          style={selection.style}
-          colorPalette={selection.colorPalette}
-          onRoomTypeChange={(roomType) => updateSelection({ roomType })}
-          onStyleChange={(style) => updateSelection({ style })}
-          onColorPaletteChange={(colorPalette) => updateSelection({ colorPalette })}
-        />
+      <main className="app-layout">
+        <div className="app-layout__controls">
+          <SelectionPanel
+            roomType={selection.roomType}
+            style={selection.style}
+            colorPalette={selection.colorPalette}
+            onRoomTypeChange={(roomType) => updateSelection({ roomType })}
+            onStyleChange={(style) => updateSelection({ style })}
+            onColorPaletteChange={(colorPalette) => updateSelection({ colorPalette })}
+          />
 
-        <GenerateBar
-          summary={summary}
-          canGenerate={canGenerate}
-          missing={missing}
-          isGenerating={moodboards.isGenerating}
-          onGenerate={handleGenerate}
-        />
+          <GenerateBar
+            summary={summary}
+            canGenerate={canGenerate}
+            missing={missing}
+            isGenerating={moodboards.isGenerating}
+            onGenerate={handleGenerate}
+          />
+        </div>
 
-        <BoardGrid
-          boards={moodboards.boards}
-          isGenerating={moodboards.isGenerating}
-          stale={moodboards.stale}
-          onBoardLoaded={moodboards.onBoardLoaded}
-          onBoardError={moodboards.onBoardError}
-          onRetryBoard={moodboards.retryBoard}
-          onDownload={downloadBoard}
-        />
+        <div className="app-layout__results">
+          <BoardGrid
+            boards={moodboards.boards}
+            isGenerating={moodboards.isGenerating}
+            stale={moodboards.stale}
+            timeoutMs={moodboards.timeoutMs}
+            onBoardLoaded={moodboards.onBoardLoaded}
+            onBoardError={moodboards.onBoardError}
+            onRetryBoard={moodboards.retryBoard}
+            onDownload={downloadBoard}
+          />
+        </div>
       </main>
     </div>
   );

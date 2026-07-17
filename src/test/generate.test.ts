@@ -26,6 +26,21 @@ describe('generateBoards (FR-8, AC-5)', () => {
     expect(new Set(urls).size).toBe(urls.length);
   });
 
+  it('gives each board a distinct variation phrase (AC-13)', () => {
+    const hints = generateBoards(selection).map((b) => b.variationHint);
+    expect(new Set(hints).size).toBe(hints.length);
+    for (const hint of hints) {
+      expect(hint.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('queues boards unstarted with zero retries', () => {
+    for (const board of generateBoards(selection)) {
+      expect(board.started).toBe(false);
+      expect(board.retries).toBe(0);
+    }
+  });
+
   it('starts every board in the loading state with a label and alt text', () => {
     const boards = generateBoards(selection);
     for (const board of boards) {

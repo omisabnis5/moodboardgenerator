@@ -5,6 +5,7 @@ interface BoardGridProps {
   boards: BoardResult[];
   isGenerating: boolean;
   stale: boolean;
+  timeoutMs: number;
   onBoardLoaded: (id: string) => void;
   onBoardError: (id: string) => void;
   onRetryBoard: (id: string) => void;
@@ -15,6 +16,7 @@ export function BoardGrid({
   boards,
   isGenerating,
   stale,
+  timeoutMs,
   onBoardLoaded,
   onBoardError,
   onRetryBoard,
@@ -62,6 +64,7 @@ export function BoardGrid({
           <BoardCard
             key={board.id}
             board={board}
+            timeoutMs={timeoutMs}
             onLoaded={onBoardLoaded}
             onError={onBoardError}
             onRetry={onRetryBoard}

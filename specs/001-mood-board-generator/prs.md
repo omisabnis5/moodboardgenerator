@@ -68,11 +68,28 @@ PR-4 depends on PR-2 (core) and PR-3 (selection panel provides the current selec
 - **Regression watch:** whole flow stays green; no core signature changes.
 - **Definition of done:** all automated ACs pass; app polished and responsive.
 
+### PR-6: Change request v2 — full-width layout, variation, artifacts, reliability
+- **Branch:** `feat/001-06-cr-v2`
+- **Layer:** fe/shared
+- **Depends on:** PR-5 (builds on the finished app)
+- **Scope (in):** two-pane full-width responsive layout; decorative-artifact prompt; stronger
+  4-way variation set; bounded-concurrency generation queue with staggered starts + exponential
+  backoff retries; `lib/config.ts` runtime override; updated/extended unit + E2E tests.
+- **Scope (out):** new features beyond the four CRs; keyed provider/proxy.
+- **Traces to:** CR-1..4 → FR-8 (rev), FR-9 (rev), FR-15, FR-16, NFR-Reliability (tightened).
+- **Verification:** unit (variation distinctness, artifact prompt) + Playwright (two-pane layout,
+  all-four-ready under stub, fast error/retry via `__MB_CONFIG__`) + manual live check.
+- **Regression watch:** AC-1,2,3,4,5,7,8,9,10 must remain green after the `useMoodboards` rewrite
+  and layout restructure.
+- **Definition of done:** AC-12,13,14,15 pass; all prior ACs still pass; live Generate returns
+  four distinct, artifact-rich boards with no partial failures.
+
 ## Execution order
 1. PR-1 (scaffold)
 2. PR-2 (shared core)
 3. PR-3 (selection UI)
 4. PR-4 (generation UI)
 5. PR-5 (E2E + polish)
+6. PR-6 (change request v2)
 
 > `/specs:execute` walks this list top to bottom, skipping PRs whose dependencies are not yet merged, and records status in `state.json`. NOTE: `gh` is not installed in this environment, so the push/open-PR/merge steps run manually (commit locally / push to origin) rather than via `gh`.

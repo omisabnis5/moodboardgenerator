@@ -79,6 +79,29 @@ e2e/
 - **App-stays-working invariant:** each PR leaves `npm run dev`, `npm run build`, and existing tests green (checked by qa-verifier each PR).
 - No existing users/data/APIs to break.
 
+## 7b. Change request v2 plan (2026-07-17) — PR-6
+
+**Approach.** One focused PR (`feat/001-06-cr-v2`) touching the UI layout, the prompt, the
+variation set, and the generation queue. No new dependencies.
+
+| Task | Layer | Traces to | Notes |
+|------|-------|-----------|-------|
+| T-8 Two-pane full-width layout: restructure `App` into controls + results panes; widen container (~1400px); results sticky on desktop; stack < 1024px | fe | FR-15, CR-1; AC-12 | CSS grid `.app-layout`; keep mobile single-column |
+| T-9 Decorative-artifact prompt: add artifact clause + "8k/photorealistic" to `buildPrompt` | shared | FR-16, CR-4; AC-14 | pure; unit-tested |
+| T-10 Stronger 4-way variation: rewrite `VARIATIONS` (4 distinct angle/lighting/styling directions + new seeds) | shared | FR-8, CR-3; AC-13 | unit-tested distinctness |
+| T-11 Reliability queue: rewrite `useMoodboards` to a bounded-concurrency queue (effect-based pump, CONCURRENCY=2) with staggered starts + exponential backoff retries (≤4); add `lib/config.ts` with `window.__MB_CONFIG__` override | fe | FR-9, NFR-Reliability, CR-2; AC-15 | override lets E2E run fast |
+| T-12 Update/extend tests: unit for variation + artifact prompt; E2E for two-pane layout, all-4-success, fast error path via config override | shared | AC-12,13,14,15 | E2E sets `__MB_CONFIG__` via `addInitScript` |
+
+**Verification.** Unit (variation distinctness, artifact prompt) + Playwright (two-pane
+layout assertions, all-four-ready under stub, fast error/retry via config override) + a manual
+live check that a real Generate returns four distinct, artifact-rich boards with no failures.
+
+**Regression surface.** `useMoodboards` rewrite is the main risk — the existing generation/
+error/stale/download flows (AC-4,5,7,8,9) must still pass. `buildPrompt`/`generateBoards`
+signatures unchanged (only content). Layout change must not break selection semantics
+(AC-1,2,3,10). All existing unit + E2E specs must stay green; the error/retry E2E is retimed
+via the config override rather than by changing behavior.
+
 ## 8. Rollout & risk
 - Sequencing: scaffold → core contract → UI (selection, then generation) → E2E/polish. No migrations.
 - **Risk:** Pollinations latency/availability at runtime → mitigated by timeout + Error/Retry state and provider abstraction; E2E doesn't depend on it (intercepted).

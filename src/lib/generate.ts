@@ -10,14 +10,27 @@ import type { BoardResult, GenerateRequest, Selection } from '../types';
 export const BOARD_COUNT = 4;
 
 /**
- * Fixed seeds + light phrasing so the 4 boards are distinct, on-brief
- * directions (not four identical images). Deterministic → unit-testable.
+ * Four distinct directions — different seed AND a meaningfully different
+ * composition/lighting/styling phrase — so the boards are genuinely varied
+ * options, not near-duplicates (FR-8). Deterministic → unit-testable.
  */
 const VARIATIONS: { seed: number; hint: string }[] = [
-  { seed: 101, hint: 'bright and airy composition' },
-  { seed: 202, hint: 'cozy and layered composition' },
-  { seed: 303, hint: 'elegant and refined composition' },
-  { seed: 404, hint: 'warm and inviting composition' },
+  {
+    seed: 137,
+    hint: 'daytime wide-angle eye-level view, bright airy natural daylight, clean minimal uncluttered styling',
+  },
+  {
+    seed: 268,
+    hint: 'cozy evening atmosphere, warm ambient lamp and candle lighting, deeply layered textiles and soft furnishings',
+  },
+  {
+    seed: 415,
+    hint: 'elegant symmetrical composition, statement pendant lighting, curated gallery wall and refined luxe decor',
+  },
+  {
+    seed: 592,
+    hint: 'relaxed eclectic corner view, abundant plants and greenery, characterful vintage accessories and collected objects',
+  },
 ];
 
 function labelFor(selection: Selection): string {

@@ -20,9 +20,11 @@ export function buildPrompt(request: GenerateRequest): string {
 
   const parts = [
     `a ${style} ${room} interior`,
-    'fully furnished and styled with decor, furniture and lighting',
+    'fully furnished and beautifully styled',
     `${palette} color palette (${hexes} tones)`,
-    'professional interior design photograph, wide angle, natural light, high detail, photorealistic',
+    // Decorative artifacts so boards read as finished, styled spaces (FR-16).
+    'richly decorated with artifacts — framed wall art, ceramic vases, potted plants and greenery, stacked books, woven textiles and patterned rugs, sculptural ornaments and curated accessories',
+    'professional interior design photograph, wide angle, natural light, high detail, photorealistic, 8k',
   ];
 
   if (request.variationHint) {

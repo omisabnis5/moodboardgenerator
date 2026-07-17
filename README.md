@@ -34,11 +34,16 @@ npm run dev        # http://localhost:5173
    Generate stays disabled until all three are chosen.
 2. **Prompt** — `lib/prompt.ts` builds a deterministic prompt from the selected room, style,
    and the palette's fixed hex tones. Only whitelisted option values reach it.
-3. **Generation** — `lib/generate.ts` produces four boards with distinct seeds (four
-   independent directions). `hooks/useMoodboards.ts` **staggers** the four requests ~1.8s
-   apart and retries with backoff, because Pollinations rate-limits bursts.
-4. **Results** — a responsive 2×2 grid with per-board loading skeletons, an error tile +
-   Retry, per-board download, and a "selections changed — regenerate" stale state.
+3. **Generation** — `lib/generate.ts` produces four boards with distinct seeds **and**
+   distinct composition/lighting/styling phrases (four genuinely different directions), each
+   prompting for richly styled decorative artifacts. `hooks/useMoodboards.ts` runs a
+   **bounded-concurrency queue** — by default fully sequential (one request at a time) with
+   exponential-backoff retries, because Pollinations gates browser requests to ~2 per short
+   window; sequential requests stay under the limit so all four boards succeed (~40–50s total).
+   Timings are tunable via `window.__MB_CONFIG__` (see `lib/config.ts`).
+4. **Layout & results** — a full-width **two-pane** layout (controls beside results) on
+   desktop, stacking on mobile; a 2×2 board grid with per-board loading skeletons, an error
+   tile + Retry, per-board download, and a "selections changed — regenerate" stale state.
 
 The image backend sits behind a small `ImageProvider` interface
 (`lib/imageProvider.ts`), so a keyed provider could be swapped in later (behind a proxy).

@@ -26,6 +26,27 @@
   font-size: 1.02rem;
 }
 
+/* ---------- Two-pane layout (full width on desktop) ---------- */
+.app-layout {
+  display: grid;
+  gap: 1.75rem;
+  align-items: start;
+}
+@media (min-width: 1024px) {
+  .app-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: 2.5rem;
+  }
+  .app-layout__results {
+    position: sticky;
+    top: 1.5rem;
+  }
+  /* In two panes the bar sits at the end of the controls column, not floating. */
+  .generate-bar {
+    position: static;
+  }
+}
+
 /* ---------- Selection groups ---------- */
 .selection-panel {
   display: grid;
@@ -218,7 +239,7 @@
 
 /* ---------- Results ---------- */
 .results {
-  margin-top: 2rem;
+  margin-top: 0;
 }
 .results__header {
   display: flex;

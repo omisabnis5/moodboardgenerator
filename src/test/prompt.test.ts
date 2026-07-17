@@ -35,4 +35,13 @@ describe('buildPrompt (AC-6, security)', () => {
     expect(prompt).toContain('photorealistic');
     expect(prompt).toContain('interior');
   });
+
+  it('requests decorative artifacts in the room (AC-14)', () => {
+    const prompt = buildPrompt(base).toLowerCase();
+    expect(prompt).toContain('artifacts');
+    // A few representative artifact cues.
+    for (const cue of ['art', 'vases', 'plants', 'textiles', 'ornaments']) {
+      expect(prompt).toContain(cue);
+    }
+  });
 });

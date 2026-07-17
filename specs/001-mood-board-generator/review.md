@@ -38,3 +38,23 @@ _None._
 
 ## Verdict
 Plan is coherent, traceable, and verifiable. Majors have concrete mitigations already in the plan and are tracked as implementation watch-items rather than blockers. **Gate: CLEAR — proceed to execute.**
+
+---
+
+## Change request v2 review (2026-07-17) — PR-6
+Reviewed the CR-1..4 additions to spec/plan/prs. **Gate remains CLEAR — 0 blockers.**
+
+- **Traceability:** CR-1→FR-15, CR-2→FR-9/NFR-Reliability, CR-3→FR-8, CR-4→FR-16; each has an AC (12–15) and a task (T-8..T-12) in PR-6. ✅
+- **Reliability approach (m1 follow-up):** the earlier staggered-start model reduced but did not
+  eliminate partial failures; the bounded-concurrency queue (in-flight ≤ 2) + exponential
+  backoff directly targets the observed 403/ORB rate-limiting. Sound. Watch-item: keep the
+  per-image timeout so a stuck request can't hold a slot forever.
+- **Regression (major watch, not blocker):** the `useMoodboards` rewrite is the highest-risk
+  change; all prior generation ACs (4,5,7,8,9) plus selection ACs must stay green. The plan
+  mandates re-running the full suite. The `__MB_CONFIG__` override keeps the error/retry E2E
+  fast without weakening production defaults — good practice, no security surface (read-only
+  client tuning, no secrets).
+- **Layout:** two-pane must not alter radiogroup semantics or the sticky Generate affordance;
+  covered by keeping AC-1,2,3,10 in the regression set.
+
+**Gate: CLEAR — proceed with PR-6.**
