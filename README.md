@@ -8,6 +8,9 @@ Built with **React + Vite + TypeScript**. Images come from the free, keyless
 [Pollinations.ai](https://pollinations.ai) text-to-image API, called directly from the
 browser — no backend, no API key.
 
+**Live demo:** https://omisabnis5.github.io/moodboardgenerator/ (deployed automatically
+from `main` via GitHub Actions → GitHub Pages).
+
 ![Four generated boards](docs/example.jpg)
 
 ## Getting started
