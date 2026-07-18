@@ -14,22 +14,24 @@ export const BOARD_COUNT = 4;
  * composition/lighting/styling phrase — so the boards are genuinely varied
  * options, not near-duplicates (FR-8). Deterministic → unit-testable.
  */
+// Hints vary composition and mood only — they must not name colors, warm/cool
+// light, or style-flavored decor, or they fight the selected palette/style (CR-5).
 const VARIATIONS: { seed: number; hint: string }[] = [
   {
     seed: 137,
-    hint: 'daytime wide-angle eye-level view, bright airy natural daylight, clean minimal uncluttered styling',
+    hint: 'bright airy wide-angle eye-level view, generous natural daylight, open and spacious composition',
   },
   {
     seed: 268,
-    hint: 'cozy evening atmosphere, warm ambient lamp and candle lighting, deeply layered textiles and soft furnishings',
+    hint: 'cozy intimate corner composition, soft diffused window light, layered textiles and soft furnishings',
   },
   {
     seed: 415,
-    hint: 'elegant symmetrical composition, statement pendant lighting, curated gallery wall and refined luxe decor',
+    hint: 'elegant symmetrical straight-on composition, a statement ceiling light, carefully curated wall decor',
   },
   {
     seed: 592,
-    hint: 'relaxed eclectic corner view, abundant plants and greenery, characterful vintage accessories and collected objects',
+    hint: 'relaxed lived-in view from the doorway, natural greenery accents, casual everyday styling',
   },
 ];
 

@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { buildPrompt } from '../lib/prompt';
-import { PALETTE_HEX } from '../data/options';
 import type { GenerateRequest } from '../types';
 
 const base: GenerateRequest = {
@@ -19,11 +18,21 @@ describe('buildPrompt (AC-6, security)', () => {
     expect(prompt).toContain('pastels');
   });
 
-  it('embeds the palette hex tones to steer color', () => {
-    const prompt = buildPrompt(base);
-    for (const hex of PALETTE_HEX.pastels) {
-      expect(prompt).toContain(hex);
-    }
+  it('reinforces the style with its description (CR-5)', () => {
+    const prompt = buildPrompt(base).toLowerCase();
+    // Traditional: "Classic elegance with timeless furniture and patterns"
+    expect(prompt).toContain('classic elegance');
+    expect(prompt).toContain('timeless furniture');
+  });
+
+  it('describes the palette in words and demands it scene-wide (CR-5)', () => {
+    const prompt = buildPrompt(base).toLowerCase();
+    // Pastels: "Soft pinks, lavenders, and gentle mint greens"
+    expect(prompt).toContain('soft pinks');
+    expect(prompt).toContain('lavenders');
+    expect(prompt).toContain('mint greens');
+    expect(prompt).toContain('strict');
+    expect(prompt).toContain('across walls, furniture and decor');
   });
 
   it('includes the per-board variation hint', () => {

@@ -52,6 +52,8 @@ export const PALETTE_HEX: Record<ColorPalette, string[]> = {
 const roomLabel = new Map(ROOM_TYPE_OPTIONS.map((o) => [o.value, o.label]));
 const styleLabel = new Map(STYLE_OPTIONS.map((o) => [o.value, o.label]));
 const paletteLabel = new Map(COLOR_PALETTE_OPTIONS.map((o) => [o.value, o.label]));
+const styleDesc = new Map(STYLE_OPTIONS.map((o) => [o.value, o.description]));
+const paletteDesc = new Map(COLOR_PALETTE_OPTIONS.map((o) => [o.value, o.description]));
 
 export function roomTypeLabel(value: RoomType): string {
   return roomLabel.get(value) ?? value;
@@ -63,4 +65,12 @@ export function styleLabelOf(value: Style): string {
 
 export function colorPaletteLabel(value: ColorPalette): string {
   return paletteLabel.get(value) ?? value;
+}
+
+export function styleDescriptionOf(value: Style): string {
+  return styleDesc.get(value) ?? '';
+}
+
+export function colorPaletteDescriptionOf(value: ColorPalette): string {
+  return paletteDesc.get(value) ?? '';
 }

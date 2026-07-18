@@ -14,6 +14,14 @@ User feedback after the first delivery. Adds/refines requirements; delivered as 
 - **CR-3 — Stronger per-board variation.** The four boards SHALL be visibly, meaningfully different directions (distinct camera angle, lighting/time-of-day, and styling emphasis), not near-duplicates, so the user gets genuinely varied options. → revises **FR-8**.
 - **CR-4 — Decorative artifacts in the rooms.** Generated rooms SHALL include decorative artifacts (framed art, vase, plant, books, rug) as a **restrained ~20–25% accent** — the room's furniture and architecture stay the clear subject, not crowded out. → new **FR-16**, revises prompt in §8.
 
+### Change request v3 — CR-5 prompt fidelity (2026-07-18)
+User feedback: generated images did not faithfully depict the selected brief (room/style/palette).
+Root causes and fixes, delivered directly on `main`:
+- **Style underweighted:** the style was a single adjective. Now the style's option *description* (e.g. "clean lines with minimalist and contemporary elements") is composed into the prompt to reinforce what the style means.
+- **Palette as hex codes:** diffusion models barely follow hex strings. The prompt now uses the palette's human-readable description ("soft pinks, lavenders, and gentle mint greens") and demands a **strict scheme applied across walls, furniture and decor**. `PALETTE_HEX` remains for UI swatches only.
+- **Variation hints fought the brief:** "warm ambient lamp and candle lighting" pulled Cool Blues toward orange; "vintage accessories" fought Modern. Hints rewritten to vary composition/mood only — no colors, no warm/cool light, no style-flavored decor.
+- Verified live (Bedroom + Modern + Cool Blues, previously the worst drift case): all four boards on-brief and palette-true. Unit tests updated (20 passing).
+
 ### Change request v2.1 refinements (2026-07-17, same PR-6)
 - **Full-bleed width:** removed the container `max-width` cap (was 1440px); the app now fills the viewport with scaling side padding (`clamp(1.25rem, 4vw, 4rem)`) — verified on a 1920px screen.
 - **Action-bar clipping:** the full-width sticky Generate bar was covering the last board row; added `padding-bottom` to the layout so every board scrolls clear of the bar — locked by an E2E assertion (last caption sits above the bar).
